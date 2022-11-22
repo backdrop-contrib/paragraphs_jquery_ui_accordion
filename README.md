@@ -28,13 +28,20 @@ It based on jQuery UI Accordion plugin which already included in core, so no nee
 * Select proper fields for Title and Description
 * You are now ready to add Accordions to your entity!
 
+If you need to include more than one field as the Description or you need to
+include an Entity Reference field, you could use
+[Paragraphs jQuery UI Accordion 2](https://github.com/backdrop-contrib/paragraphs_jquery_ui_accordion2),
+which is a fork of this module that uses paragraph display modes instead of
+selecting an individual Description field.
+
 ## Issues
 
 Bugs should be reported in the [Issue Queue](https://github.com/backdrop-contrib/paragraphs_jquery_ui_accordion/issues).
 
 ## Current Maintainers
 
-[Alan Mels](https://github.com/alanmels) of [AltaGrade](https://www.altagrade.com)
+* [Alan Mels](https://github.com/alanmels) of [AltaGrade](https://www.altagrade.com)
+* [Martin Price](https://github.com/yorkshire-pudding) - [System Horizons Ltd](https://www.systemhorizons.co.uk)
 
 Credits
 -------
