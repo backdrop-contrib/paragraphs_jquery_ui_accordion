@@ -142,8 +142,8 @@ function paragraphs_jquery_ui_accordion_field_formatter_view($entity_type, $enti
 
     $paragraphs_unique_id = backdrop_html_id(strtolower($title[0]['value']));
     $element[0]['accordion'][] = array(
-      'title' => array('#markup' => '<h3><a id="' . $paragraphs_unique_id . '" href="#' . $paragraphs_unique_id . '">' . $title[0]['value'] . '</a></h3>'),
-      'content' => array('#markup' => '<div>' . $render_paragraph_field . '</div>'),
+      'title' => array('#markup' => '<h3><button id="' . $paragraphs_unique_id . '" aria-controls="' . $paragraphs_unique_id . '-content"><span class="accordion-title">' . $title[0]['value'] . '</span></button></h3>'),
+      'content' => array('#markup' => '<div id="' . $paragraphs_unique_id . '-content" aria-labelledby="' . $paragraphs_unique_id . '">' . $render_paragraph_field . '</div>'),
     );
   }
   return $element;
