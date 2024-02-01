@@ -54,7 +54,8 @@ function paragraphs_jquery_ui_accordion_field_formatter_settings_form($field, $i
     $instances = field_info_instances('paragraphs_item', $bundle->bundle);
     $bundles_options[$bundle->bundle] = $bundle->name;
     foreach ($instances as $paragraphs_instance) {
-      $paragraphs_fields[$paragraphs_instance['field_name']] = $paragraphs_instance['label'];
+      $instance_name = $paragraphs_instance['bundle'] . ':' . $paragraphs_instance['field_name'];
+      $paragraphs_fields[$instance_name] = $paragraphs_instance['label'] . ' (' . $instance_name . ')';
     }
   }
 
@@ -135,10 +136,18 @@ function paragraphs_jquery_ui_accordion_field_formatter_view($entity_type, $enti
   foreach ($paragraphs_items as $paragraphs_item) {
     $display = array('label' => 'hidden');
 
-    $paragraph_field = field_view_field('paragraphs_item', $paragraphs_item, $settings['content'], $display, $langcode = NULL);
+    $content_field_name = $title_field_name = '';
+    if (($pos = strpos($settings['content'], ":")) !== FALSE) {
+      $content_field_name = substr($settings['content'], $pos + 1);
+    }
+    if (($pos = strpos($settings['title'], ":")) !== FALSE) {
+      $title_field_name = substr($settings['title'], $pos + 1);
+    }
+
+    $paragraph_field = field_view_field('paragraphs_item', $paragraphs_item, $content_field_name, $display, $langcode = NULL);
     $render_paragraph_field = backdrop_render($paragraph_field);
 
-    $title = field_get_items('paragraphs_item', $paragraphs_item, $settings['title']);
+    $title = field_get_items('paragraphs_item', $paragraphs_item, $title_field_name);
 
     $paragraphs_unique_id = backdrop_html_id(strtolower($title[0]['value']));
     $element[0]['accordion'][] = array(
