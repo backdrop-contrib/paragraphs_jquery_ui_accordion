@@ -133,6 +133,9 @@ function paragraphs_jquery_ui_accordion_field_formatter_view($entity_type, $enti
   $paragraphs_items = entity_load('paragraphs_item', $paragraphs_ids);
 
   foreach ($paragraphs_items as $paragraphs_item) {
+    if ($paragraphs_item->status != 1) {
+      continue;
+    }
     $display = array('label' => 'hidden');
 
     $paragraph_field = field_view_field('paragraphs_item', $paragraphs_item, $settings['content'], $display, $langcode = NULL);
